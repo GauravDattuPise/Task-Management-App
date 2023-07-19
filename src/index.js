@@ -20,5 +20,5 @@ app.listen(process.env.PORT, ()=>{
     console.log("Server is running on", 5000);
 })
 
-console.log(process.env.DB_URL)
-console.log(process.env.PORT)
+// console.log(process.env.DB_URL)
+// console.log(process.env.PORT)
