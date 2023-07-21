@@ -47,7 +47,7 @@ const Register = () => {
                 toast.success(res.data.message);
 
                 setTimeout(() => {
-                    navigate("/login")
+                    navigate("/")
                 }, 1500);
 
             }
@@ -128,7 +128,7 @@ const Register = () => {
                     <Button type='submit' variant='contained' sx={{ marginTop: 3, borderRadius: 3, width: "200px" }}>register</Button>
 
                     {/* button for navigate to login */}
-                    <Button onClick={() => navigate("/login")} sx={{ marginTop: 3, textTransform: 'capitalize' }}>
+                    <Button onClick={() => navigate("/")} sx={{ marginTop: 3, textTransform: 'capitalize' }}>
                         Already Registered ? Please Login </Button>
 
                 </Box>

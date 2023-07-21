@@ -14,9 +14,7 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // function handleRegister() {
-    //     navigate("/register");
-    // }
+    
 
     function handleLogout() {
 
@@ -25,10 +23,11 @@ const Header = () => {
             dispatch(authActions.logout());
 
             localStorage.removeItem("user");
+            localStorage.removeItem("allUsers")
             toast.success("Logged out Successfully");
 
             setTimeout(() => {
-                navigate("/login");
+                navigate("/");
             }, 1500);
 
         } catch (error) {
@@ -40,27 +39,28 @@ const Header = () => {
         <div>
             <AppBar  >
                 <Toolbar>
-                    <Typography variant='h5'>Task Management App</Typography>
+                    <Typography variant='h5'>Task Management App</Typography>                   
                     {
                         !isLogin && <>
 
                             <Button LinkComponent={Link} to="/register" color='success' sx={{ marginLeft: "auto", marginRight: "10px" }} variant='contained'>Register</Button>
-                            <Button LinkComponent={Link} to="/login" color='success' variant='contained' >Login</Button>
+                            <Button LinkComponent={Link} to="/" color='success' variant='contained' >Login</Button>
 
                         </>
                     }
                     {
                         isLogin && <>
                             <Box sx={{ marginLeft: "auto", marginRight: "10px" }}>
-                                <Tabs>
-                                    <Tab color='secondary' label="Create-Task" sx={{ color: "white" }}></Tab>
+                                <Tabs value={false}>
+                                <Tab LinkComponent={Link} to="/my-task"  label="My-Task" sx={{ color: "white" }}></Tab>
+                                    <Tab LinkComponent={Link} to="/create-task"  label="Create-Task" sx={{ color: "white" }}></Tab>
                                 </Tabs>
                             </Box>
 
                             <Button color='error' variant='contained' onClick={handleLogout}>logout</Button>
                         </>
                     }
-                    
+
                 </Toolbar>
             </AppBar>
         </div>

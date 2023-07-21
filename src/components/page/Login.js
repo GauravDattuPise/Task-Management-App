@@ -53,9 +53,13 @@ const Login = () => {
 
                 // converting js object into json string to store in localstorage
                 const user = JSON.stringify(res.data.user);
+                const allUsers = JSON.stringify(res.data.userArray);
 
+                console.log(allUsers);
                 // setting user in localstorage
                 localStorage.setItem("user", user);
+                localStorage.setItem("allUsers", allUsers);
+
 
                 setTimeout(()=>{
                     navigate("/create-task")
