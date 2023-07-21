@@ -14,7 +14,7 @@ mongoose.connect(process.env.DB_URL)
 .catch((err)=> console.log("error in connection", err));
 
 app.use("/user", require("./routes/userRoutes"));
-app.use("/task", require("./routes/tastRoutes"));
+app.use("/task", require("./routes/taskRoutes"));
 
 app.listen(process.env.PORT, ()=>{
     console.log("Server is running on", 5000);

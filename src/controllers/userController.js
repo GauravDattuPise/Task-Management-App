@@ -25,7 +25,7 @@ exports.registerUser = async (req, res) => {
         userData.password = hashedPassword;
 
         const registeredUser = await userModel.create(userData);
-        return res.status(201).send({ status: false, message: "Registration Successful", user: registeredUser })
+        return res.status(201).send({ status: true, message: "Registration Successful", user: registeredUser })
 
     } catch (error) {
         res.status(500).send({ status: false, message: "Error in User Registration", error: error.message });
@@ -61,7 +61,15 @@ exports.loginUser = async(req,res)=>{
         // creating token
         const token = jwt.sign({userId : existingUser._id}, process.env.SECRET_KEY, {expiresIn : "7d"});
 
-        return res.status(200).send({status : true, message : "Login Successful", user : existingUser, token})
+        // for assigning tasks to user
+        const getAllUsers = await userModel.find({}).select({email : 1,_id : 0});
+
+        const allUsers = []
+        getAllUsers.forEach((obj)=>{
+              allUsers.push(obj.email);
+        })
+
+        return res.status(200).send({status : true, message : "Login Successful", user : existingUser, token :  token, userArray : {users : allUsers}})
     } catch (error) {
         res.status(500).send({ status: false, message: "Error in User Login", error: error.message });        
     }
